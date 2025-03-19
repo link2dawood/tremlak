@@ -1,0 +1,83 @@
+html[dir=rtl] .navi_pagi_top_right.owl-theme .owl-dots {
+    left: 20px !important;
+    right: unset !important;
+}
+
+html[dir=rtl] .navi_pagi_top_right.owl-theme .owl-nav {
+    left: 0px !important;
+    right: unset !important;
+}
+
+html[dir=rtl] .vam_nav_style.owl-theme .owl-nav button.owl-prev {
+    right: -30px !important;
+    left: unset !important;
+}
+
+html[dir=rtl] .vam_nav_style.owl-theme .owl-nav button.owl-next {
+    left: -30px !important;
+    right: unset !important;
+}
+
+html[dir=rtl] .feature-style1 .top-area{
+    padding-right: 30px !important;
+    padding-left: unset !important;
+}
+
+html[dir=rtl] .cta-btns-style1 .mr30 {
+    margin-left: 30px;
+}
+
+html[dir=rtl] .mailchimp-style1 button {
+    left: 25px !important;
+    right: unset !important;
+}
+
+html[dir=rtl] .testimonial-style1 .flex-grow-1.ms-3 {
+    margin-right: 1rem !important;
+    margin-left: unset !important;
+}
+
+html[dir=rtl] .testimonial-style1 .icon {
+    left: 60px;
+    right: unset;
+}
+html[dir=rtl] .advance-content-style1 .advance-search-icon{
+    margin-left: unset !important;
+    margin-right:  1.5rem !important;
+}
+html[dir=rtl] .ud-btn2 i , html[dir=rtl] .ud-btn i{
+    margin-right: 10px !important;
+    margin-left: unset !important;
+}
+html[dir=rtl] .login-info i{
+    margin-left: 0.5rem!important;
+    margin-right: unset !important;
+}
+html[dir=rtl] .list-item .arrow{
+    margin-right: 8px !important;
+    margin-left: unset !important;
+}
+html[dir=rtl] .list-meta a{
+    margin-left: 25px !important;
+    margin-right: unset !important;
+}
+html[dir=rtl] .about-box-1 .list-style1 i{
+    right: 0 !important;
+    left: unset !important;
+}
+@media only screen and (max-width: 575.98px) {
+    html[dir=rtl] .mr0-xs {
+        margin-left: 0px !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    html[dir=rtl] .navi_pagi_top_right.owl-theme .owl-dots {
+        right: unset !important;
+        left: 0 !important;
+    }
+
+    html[dir=rtl] .navi_pagi_top_right.owl-theme .owl-nav {
+        left: 0 !important;
+    }
+}

@@ -1,0 +1,60 @@
+.logo_styling .login_page_logo{
+	max-width: 250px !important;
+}
+main{
+	min-height: calc(100vh - 120px);
+}
+.sports__center_image{
+	height: 300px;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 8px;
+}
+.sports__center_img .img{
+	height: 300px;
+	width: 100%;
+	object-fit: cover;
+}
+.avatar{
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+}
+table tr td{
+	vertical-align: middle !important;
+}
+
+.table-overflow{
+    min-height: 500px !important;
+	overflow-x: scroll;
+}
+
+.append-province input{
+	width: 90%;
+}
+#provice-value{
+	cursor: pointer;
+}
+.setValueBg{
+	background-color : #000000;
+    color : #ffffff;
+    width : 90%;
+    padding : 10px;
+}
+.append-province input:focus-visible , .append-province input:focus{
+	outline: 0 !important;
+	box-shadow: unset !important;
+}
+.fix-height{
+	height: 50vh;
+	overflow-y: scroll;
+}
+@media only screen and (max-width:992px){
+	.table-overflow .datatable-top, .datatable-bottom {
+	    display: flex;
+	    align-items: center;
+	    padding: 8px 10px;
+	    flex-direction: column;
+	    gap: 10px;
+	}
+}
