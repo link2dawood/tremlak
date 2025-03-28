@@ -15,14 +15,15 @@
     <link rel="canonical" href="{{$settings->seo_canonical}}">
     <meta name="google-site-verification" content="JZ6Du9Iyp92nGv9dfw5A4UR61pKc11Z3b1ebHWldafs" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PGRXZN7HMY"></script>
+   <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-38VLHLMTR8"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-PGRXZN7HMY');
-  </script>
+    
+      gtag('config', 'G-38VLHLMTR8');
+    </script>
   <!-- css file -->
   <link rel="stylesheet" href="{{asset('agent/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('agent/css/ace-responsive-menu.css')}}">
@@ -126,7 +127,6 @@
             } else {
         // Remove from favorites
                 favorites.splice(index, 1);
-                Swal.fire(lang["Alert"], lang["Property removed from your favourite list."], "info");
         // Remove text-danger class from the heart icon
                 $("#heartIcon" + propertyId).removeClass('fa-solid text-danger');
             }

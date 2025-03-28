@@ -28,7 +28,7 @@
                                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                                 aria-labelledby="home-tab">
                                 <div class="advance-content-style1">
-                                    <form action="{{route('properties')}}" id="search_form" method="POST">
+                                    <form action="{{route('properties')}}" id="search_form" method="GET">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-12 col-lg-10">
@@ -61,6 +61,11 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        @php
+                                                            // Fetch the selected currency symbol from the database or set default to ₺
+                                                            $currencySymbol = getCurrencySymbol() ?? '₺';
+                                                        @endphp
+                                                        
                                                         <div class="col-lg-4">
                                                             <div class="dropdown-lists at-home8 my-1">
                                                                 <div class="btn open-btn drop_btn3 text-start dropdown-toggle" data-bs-toggle="dropdown">
@@ -70,18 +75,16 @@
                                                                 <div class="dropdown-menu" style="width: 350px; padding: 15px;"> <!-- Increased width of dropdown -->
                                                                     <div class="widget-wrapper pb20 mb0">
                                                                         <div class="price-range-inputs d-flex justify-content-between"> <!-- Added justify-content-between -->
-                                                                            <input type="hidden" name="currency_symbol" id="currency_symbol" value="{{ getCurrencySymbol() }}">
+                                                                            <input type="hidden" name="currency_symbol" id="currency_symbol" value="{{ $currencySymbol }}">
                                                                             <!-- Min Price Input - Wider -->
                                                                             <div class="d-flex align-items-center" style="width: 45%;"> <!-- Set to percentage width -->
-                                                                                <span class="currency-symbol me-2"></span>
-                                                                                <input type="text" id="min_price" name="min_price" class="form-control border w-100 price-input" 
-                                                                                placeholder="Min Price">
+                                                                                <span class="currency-symbol me-2">{{ $currencySymbol }}</span>
+                                                                                <input type="text" id="min_price" name="min_price" class="form-control border w-100 price-input" placeholder="Min Price">
                                                                             </div>
                                                                             <!-- Max Price Input - Wider -->
                                                                             <div class="d-flex align-items-center" style="width: 45%;"> <!-- Set to percentage width -->
-                                                                                <span class="currency-symbol me-2"></span>
-                                                                                <input type="text" id="max_price" name="max_price" class="form-control border w-100 price-input" 
-                                                                                placeholder="Max Price">
+                                                                                <span class="currency-symbol me-2">{{ $currencySymbol }}</span>
+                                                                                <input type="text" id="max_price" name="max_price" class="form-control border w-100 price-input" placeholder="Max Price">
                                                                             </div>
                                                                         </div>
                                                                     </div>

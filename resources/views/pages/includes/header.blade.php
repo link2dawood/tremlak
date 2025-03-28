@@ -1,26 +1,15 @@
 <div class="bg-light py-1 text-end px-3 px-md-3 px-lg-5">
     <div class="d-flex align-items-center justify-content-end gap-3 py-2">
-{{--        <select class="language shadow px-3" id="languageDropdown">--}}
-{{--            @foreach($language_global as $language)--}}
-{{--                <option value="{{$language->short_name}}">{{strtoupper($language->short_name)}}</option>--}}
-{{--            @endforeach--}}
-{{--        </select>--}}
-
-{{--        <select class="currency shadow px-3" id="currencyDropdown">--}}
-{{--            @foreach($currency_global as $currency)--}}
-{{--                <option value="{{$currency->code}}">{{$currency->symbol}} {{$currency->code}}</option>--}}
-{{--            @endforeach--}}
-{{--        </select>--}}
 
         <div class="language">
             <a onclick="showLanguages()" class="lang-drpdwn-btn">
-                <img id="selectedFlagLang" style="width: 30px;height: 30px" class="pe-2" src="{{asset('flags/gl.svg')}}" alt="">
+                <img id="selectedFlagLang" style="width: 30px;height: 30px" class="pe-2" src="https://websiteprojecttest.com/flags/trky.svg" alt="">
                 <span id="selectedLang">Lang</span>
             </a>
             <div class="dropdown-language" onclick="event.stopPropagation();">
                 @foreach($language_global as $language)
-                <a href="#" class="d-flex align-items-center"  onclick="changeLanguage(`{{$language->short_name}}`, `{{asset($language->flags)}}`, `{{$language->short_name}}`)">
-                    <img class="pe-2" style="width: 30px;height: 30px" src="{{ $language->flags != '' ? asset($language->flags) : asset('flags/gl.svg') }}" alt="">{{$language->name}}
+                <a href="#" class="d-flex align-items-center"  onclick="changeLanguage(`{{$language->short_name}}`, `{{url($language->flags)}}`, `{{$language->short_name}}`)">
+                    <img class="pe-2" style="width: 30px;height: 30px" src="{{url($language->flags)}}" alt="">{{$language->name}}
                 </a>
                 @endforeach
 
@@ -29,13 +18,13 @@
 
         <div class="currency">
             <a onclick="showCurrencies()" class="currency-drpdwn-btn">
-                <img id="selectedFlagCurrency" style="width: 30px;height: 30px" class="pe-2" src="https://websiteprojecttest.com/flags/currency.svg" alt="">
+                <img id="selectedFlagCurrency" style="width: 30px;height: 30px" class="pe-2" src="https://websiteprojecttest.com/flags/trky.svg" alt="">
                 <span id="selectedCurrency">Currency</span>
             </a>
             <div class="dropdown-currency" onclick="event.stopPropagation();">
                 @foreach($currency_global as $currency)
                 <a href="#" class="d-flex align-items-center" onclick="changeCurrency(`{{$currency->code}}`, `{{asset($currency->flags)}}`, `{{$currency->code}}`)">
-                    <img class="pe-2" style="width: 30px;height: 30px" src="{{ $currency->flags !='' ? asset($currency->flags) : 'https://websiteprojecttest.com/flags/currency.svg' }}" alt="">{{$currency->code}}
+                    <img class="pe-2" style="width: 30px;height: 30px" src="{{ asset($currency->flags) }}" alt="">{{$currency->code}}
                 </a>
                 @endforeach
                 <!-- Add more currency options as needed -->

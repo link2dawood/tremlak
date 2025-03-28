@@ -70,6 +70,24 @@
     .cropper-container {
         max-height: 500px !important;
     }
+    .img-container {
+    max-width: 100%;
+    width: 100%;
+    height: 400px; /* Set fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #f3f3f3; /* Light background for contrast */
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+}
+
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensure full image is visible */
+}
 </style>
 <div class="dashboard__content property-page bgc-f7">
     <div class="row align-items-center pb40">
@@ -117,6 +135,7 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <input type="hidden" value="" id="property_id">
+                        <input type="hidden" name="main_image_index" id="main_image_index" value="0">
                         <div class="tab-pane fade show active" id="nav-item1" role="tabpanel" aria-labelledby="nav-item1-tab">
                             <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
                                 <h4 class="title fz17 mb30">{{__('agent.Property Type')}}</h4>
@@ -1350,11 +1369,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="justify-content-between d-flex p-3">
-                            <button class="ud-btn btn-thm" type="button" onclick="switchTabs(2)">
-                                {{__('Next')}} <i class="fa fa-arrow-right"></i>
-                            </button>
+                            <div class="justify-content-between d-flex p-3">
+                                <button class="ud-btn btn-thm" type="button" onclick="switchTabs(2)">
+                                    {{__('Next')}} <i class="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-item2" role="tabpanel" aria-labelledby="nav-item2-tab">
                             <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative min-height-tab">
@@ -1395,19 +1414,19 @@
                                     <div class="form-group">
                                         <div class="editor-container">
                                             <div id="editor" contenteditable="true" class="form-control editor-content"></div>
-                                            <textarea id="descriptionEditor" name="property_description" class="d-none"></textarea>
+                                            <textarea id="descriptionEditor" name="description" class="d-none"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="justify-content-between d-flex p-3">
-                            <button class="ud-btn btn-thm" type="button" onclick="switchTabs(1)">
-                                <i class="fa fa-arrow-left"></i> {{__('Back')}}
-                            </button>
-                            <button class="ud-btn btn-thm" type="button" onclick="switchTabs(3)">
-                                {{__('Next')}} <i class="fa fa-arrow-right"></i>
-                            </button>
+                            <div class="justify-content-between d-flex p-3">
+                                <button class="ud-btn btn-thm" type="button" onclick="switchTabs(1)">
+                                    <i class="fa fa-arrow-left"></i> {{__('Back')}}
+                                </button>
+                                <button class="ud-btn btn-thm" type="button" onclick="switchTabs(3)">
+                                    {{__('Next')}} <i class="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-item3" role="tabpanel" aria-labelledby="nav-item3-tab">
                             <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative min-height-tab">
@@ -1431,7 +1450,7 @@
                                             <!-- Thumbnail Selection -->
                                             <div class="thumbnail-selection mt-4 d-none">
                                                 <h6>{{__('Select Thumbnail')}}</h6>
-                                                <div class="thumbnail-options d-flex flex-wrap gap-3" id="thumbnailOptions"></div>
+                                                <div class="thumbnail-options d-flex flex-wrap gap-3" id="thumbnailOptions parentElement"></div>
                                             </div>
                                             
                                             <!-- Image Cropping Modal -->
@@ -1455,19 +1474,19 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="upload__img-wrap mt-3 ms-1 w-100" id="parentElement"></div>
+                                            <div class="thumbnail-options d-flex flex-wrap gap-3" id="parentElement"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="justify-content-between d-flex p-3">
-                            <button class="ud-btn btn-thm flex-grow-0" type="button" onclick="switchTabs(2)">
-                                <i class="fa fa-arrow-left"></i> Back
-                            </button>
-                            <button class="ud-btn btn-thm flex-grow-0" type="button" onclick="switchTabs(4)">
-                                Next <i class="fa fa-arrow-right"></i>
-                            </button>
+                            <div class="justify-content-between d-flex p-3">
+                                <button class="ud-btn btn-thm flex-grow-0" type="button" onclick="switchTabs(2)">
+                                    <i class="fa fa-arrow-left"></i> Back
+                                </button>
+                                <button class="ud-btn btn-thm flex-grow-0" type="button" onclick="switchTabs(4)">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="nav-item4" role="tabpanel" aria-labelledby="nav-item4-tab">
                             <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
@@ -1716,8 +1735,90 @@
 </div>
 @endsection
 @section('script')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let uploadedImages = []; // Store uploaded images
+    let cropper;
+    let croppedImageData = null; // Store cropped image
+
+    document.getElementById("ad_image").addEventListener("change", function (event) {
+        let files = event.target.files;
+        if (files.length > 0) {
+            for (let file of files) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    let imgWrapper = document.createElement("div");
+                    imgWrapper.classList.add("uploaded-img", "position-relative", "p-2");
+
+                    imgWrapper.innerHTML = `
+                        <img src="${e.target.result}" class="preview-img" data-file="${file.name}">
+                        <button class="btn btn-danger btn-sm remove-img" onclick="removeImage(this)">X</button>
+                        <button class="btn btn-primary btn-sm crop-img" onclick="openCropModal('${e.target.result}')">
+                            <i class="fa fa-crop"></i>
+                        </button>
+                    `;
+
+                    document.getElementById("parentElement").appendChild(imgWrapper);
+                    uploadedImages.push(file);
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Show thumbnail selection after upload
+            document.querySelector(".thumbnail-selection").classList.remove("d-none");
+        }
+    });
+
+    // Initialize Sortable.js
+    new Sortable(document.getElementById("parentElement"), {
+        animation: 150,
+        ghostClass: "sortable-ghost",
+        onEnd: function () {
+            console.log("Sorting Updated");
+        }
+    });
+
+    // Open crop modal
+    window.openCropModal = function (imageSrc) {
+        let modal = new bootstrap.Modal(document.getElementById("imageCropModal"));
+        document.getElementById("cropImage").src = imageSrc;
+
+        modal.show();
+
+        let image = document.getElementById("cropImage");
+        if (cropper) cropper.destroy();
+        cropper = new Cropper(image, {
+            aspectRatio: 16 / 9,
+            viewMode: 1,
+            autoCropArea: 1
+        });
+    };
+
+    // Crop image and save
+    document.getElementById("cropButton").addEventListener("click", function () {
+        croppedImageData = cropper.getCroppedCanvas().toDataURL("image/jpeg");
+
+        // Replace the original image preview
+        let imgElements = document.querySelectorAll(".preview-img");
+        imgElements.forEach(img => {
+            if (img.src === document.getElementById("cropImage").src) {
+                img.src = croppedImageData;
+            }
+        });
+
+        bootstrap.Modal.getInstance(document.getElementById("imageCropModal")).hide();
+    });
+
+    // Remove image
+    window.removeImage = function (btn) {
+        btn.parentElement.remove();
+    };
+});
+</script>
 
 <script>
     // Editor functionality
@@ -2044,4 +2145,19 @@
     });
     
 </script>
+<script>
+    // Add this to your JavaScript
+    function selectMainImage(index) {
+        // Remove selected class from all images
+        document.querySelectorAll('.thumbnail-options img').forEach(img => {
+            img.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked image
+        document.querySelector(`.thumbnail-options img[data-index="${index}"]`).classList.add('selected');
+        
+        // Update hidden input value
+        document.getElementById('main_image_index').value = index;
+    }
+    </script>
 @endsection

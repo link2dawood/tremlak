@@ -22,8 +22,8 @@
                                 <th scope="col">{{__('agent.Title')}}</th>
                                 <th scope="col">{{__('Price')}}</th>
                                 <th scope="col">{{__('agent.Duration')}}</th>
-                                <th scope="col">{{__('agent.Create Date')}}</th>
-                                <th scope="col">{{__('agent.Expire Date')}}</th>
+                                <th scope="col" data-sort="date">{{ __('agent.Create Date') }}</th>
+                                <th scope="col" data-sort="date">{{ __('agent.Expire Date') }}</th>
                                 <th scope="col">{{__('agent.Expired')}}</th>
                                 <th scope="col">{{__('agent.Admin Status')}}</th>
                                 <th scope="col">{{__('agent.Status')}}</th>
@@ -57,8 +57,14 @@
                                 </a>
                             </td>
                             <td class="vam">{{$property->duration}} months</td>
-                            <td class="vam">{{ date('d-m-Y',strtotime($property->create_date)) }}</td>
-                            <td class="vam">{{ date('d-m-Y',strtotime($property->expire_date)) }}</td>
+                            <!--<td class="vam">{{ date('d-m-Y',strtotime($property->create_date)) }}</td>-->
+                            <!--<td class="vam">{{ date('d-m-Y',strtotime($property->expire_date)) }}</td>-->
+                            <td class="vam" data-order="{{ date('Y-m-d', strtotime($property->create_date)) }}">
+                                {{ date('d-m-Y', strtotime($property->create_date)) }}
+                            </td>
+                            <td class="vam" data-order="{{ date('Y-m-d', strtotime($property->expire_date)) }}">
+                                {{ date('d-m-Y', strtotime($property->expire_date)) }}
+                            </td>
                             <td class="vam">
                                 @php
                                 $currentDate = now(); // Get current date

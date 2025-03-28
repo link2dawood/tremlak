@@ -526,11 +526,23 @@
 
             </div>
 
-            <div class="ps-widget bgc-white bdrs12 default-box-shadow2 px30 pt30 pb20 mb30 overflow-hidden position-relative">
-                <h4 class="title fz17 mb10">{{__('user.Property Description')}}</h4>
+            <!--<div class="ps-widget bgc-white bdrs12 default-box-shadow2 px30 pt30 pb20 mb30 overflow-hidden position-relative">-->
+            <!--    <h4 class="title fz17 mb10">{{__('user.Property Description')}}</h4>-->
 
-                <p class="text mb10">{{compiledText('description',$property->property_type_id,$property->id)}}</p>
-            </div>
+            <!--    <p class="text mb10">{{compiledText('description',$property->property_type_id,$property->id)}}</p>-->
+            <!--</div>-->
+            <div class="ps-widget bgc-white bdrs12 default-box-shadow2 px30 pt30 pb20 mb30 overflow-hidden position-relative">
+                    <h4 class="title fz17 mb10">{{ __('user.Property Description') }}</h4>
+                
+                    <p class="text mb10">
+                        @if(is_null($property->description))
+                            {{ compiledText('description', $property->property_type_id, $property->id) }}
+                        @else
+                            {!! $property->description !!}
+                        @endif
+                    </p>
+                </div>
+
             @if(count($property->outlooks()) > 0)
             <div class="ps-widget bgc-white bdrs12 default-box-shadow2 px30 pt30 pb20 mb30 overflow-hidden position-relative">
                 <h4 class="title fz17 mb-0">{{__('user.Features')}}</h4>
@@ -620,7 +632,7 @@
                                 {{--                                        <p class="fw600 mb-0 ff-heading dark-color">{{__('user.District')}}: </p>--}}
                             {{--                                    </div>--}}
                             <div class="pd-list">
-                                <p class="text mb10">{{$property->property_city->title}}/ {{$property->property_town->title}}/ {{$property->property_district->title}}</p>
+                                <p class="text mb10">{{$property->property_city->title}} / {{$property->property_town->title}} / {{$property->property_district->title}}</p>
                             </div>
                         {{--                                </div>--}}
                     {{--                            </div>--}}

@@ -64,7 +64,7 @@ function getCurrencySymbol(){
     if($currencyCode){
         return $currency_global->symbol;
     }else{
-        return "$";
+        return "₺";
     }
 }
 

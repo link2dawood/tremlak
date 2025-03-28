@@ -549,27 +549,27 @@ $("#property_type").change(function (e) {
         }
     });
 
-    $.ajax({
-        url: "/get_features_category",
-        type: "POST",
-        data: {
-            property_type_id: property_type,
-        },
-        success: function (data) {
-            var result = data;
+$.ajax({
+    url: "/get_features_category",
+    type: "POST",
+    data: {
+        property_type_id: property_type,
+    },
+    success: function (data) {
+        var result = data;
 
-            if (result.status == true) {
-                data = result.result;
+        if (result.status == true) {
+            data = result.result;
 
-                $("#append_features").html(data);
+            $("#append_features").html(data);
 
-            } else {
+        } else {
 
-                $("#append_features").html('');
+            $("#append_features").html('');
 
-            }
         }
-    });
+    }
+});
 
 });//property_type change
 
@@ -1295,6 +1295,8 @@ $("#property_submit_btn").click(function (event) {
 
 
     ajax_data.append('property_type', $("#property_type option:selected").val());
+    $("#descriptionEditor").val($("#editor").html());
+    ajax_data.append('description', $("#descriptionEditor").val());
     ajax_data.append('property_town', $("#property_town option:selected").val());
     ajax_data.append('property_city', $("#property_city option:selected").val());
     ajax_data.append('property_district', $("#property_district option:selected").val());
@@ -2161,8 +2163,8 @@ function deletePropertyImage(product_id,preview_image,property_id){
                 // window.location.reload();
                 let images_count = parseInt($("#images_count").val());
                 images_count = images_count-1;
-                 $("#images_count").val(images_count);
-                 $("#image_card"+product_id).addClass('d-none');
+                $("#images_count").val(images_count);
+                $("#image_card"+product_id).addClass('d-none');
             } else {
                 Swal.fire({
                     icon: data.icon,

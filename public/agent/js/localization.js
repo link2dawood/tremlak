@@ -262,8 +262,8 @@ $(document).ready(function () {
     // Default settings
     var defaultLanguage = 'tr';  // Turkish Language Code
     var defaultCurrency = 'TRY'; // Turkish Lira
-    var defaultLangFlag = "{{ asset('flags/trky.svg') }}"; // Update path if necessary
-    var defaultCurrencyFlag = "{{ asset('flags/trky.svg') }}"; // Update path if necessary
+    var defaultLangFlag = "https://websiteprojecttest.com/flags/trky.svg"; // Update path if necessary
+    var defaultCurrencyFlag = "https://websiteprojecttest.com/flags/trky.svg"; // Update path if necessary
 
     // Get localStorage values
     var language = localStorage.getItem('language');

@@ -1,12 +1,12 @@
 <?php
 return [
 //    start header translations
-    'home' => 'Home',
-    'properties' => 'Properties',
-    'about' => 'About Us',
-    'contact' => 'Contact Us',
-    'favorite' => 'Favorite Properties',
-    'Favourites' => 'Favourites',
+    'home' => 'الصفحة الرئيسية',
+    'properties' => 'العقارات',
+    'about' => 'معلومات عنا',
+    'contact' => 'اتصل بنا',
+    'favorite' => 'العقارات المفضلة',
+    'Favourites' => 'المفضلات',
     'agents' => 'Agents',
     'dashboard' => 'Dashboard',
     'admin dashboard' => 'Admin Dashboard',

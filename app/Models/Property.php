@@ -29,6 +29,7 @@ class Property extends Model
         'duration',
         'highlight',
         'featured',
+        'description',
         'status',
         'admin_status',
         'expire_status',

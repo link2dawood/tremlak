@@ -20,7 +20,7 @@
                     <div class="d-flex align-items-start justify-content-between flex-row">
                         <div>
                             <div class=" h5 mb-1">{{getCurrency($same->price_in_usd,$same->currency_id,$same->price)}}</div>
-                            <h6 class="list-title"> {{compiledText('title',$same->property_type_id,$same->id)}} </h6>
+                            <h6 class="list-title fixed-title"> {{compiledText('title',$same->property_type_id,$same->id)}} </h6>
                             <p class="list-text">{{$same->property_city->title}}
                                 / {{$same->property_town->title}}
                                 / {{$same->property_district->title}}</p>

@@ -30,10 +30,10 @@ class LanguageController extends Controller
         session()->put('currencyCode', $request->currencyCode ?? 'USD');
         echo "true";
     }
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     public function search($records,$request,&$data) {
         if($request->perpage)
             $this->perpage  =   $request->perpage;

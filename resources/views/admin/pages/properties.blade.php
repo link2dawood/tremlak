@@ -27,8 +27,8 @@
                                 <th style="min-width: 150px" scope="col">{{__('admin.Title')}}</th>
                                 <th scope="col">{{__('Price')}}</th>
                                 <th scope="col">{{__('admin.Visitors')}}</th>
-                                <th scope="col">{{__('admin.Posted')}}</th>
-                                <th scope="col">{{__('admin.Expire')}}</th>
+                                <th scope="col" data-sort="date">{{__('admin.Posted')}}</th>
+                                <th scope="col" data-sort="date">{{__('admin.Expire')}}</th>
                                 <th scope="col">{{__('admin.Expired')}}</th>
                                 <th scope="col">{{__('admin.Duration')}}</th>
                                 <th scope="col">{{__('admin.City')}}</th>
@@ -56,21 +56,42 @@
                                     <!-- <td>
                                         <div class="list-price">{{$property->price}}  {{$property->property_currency->code ?? ''}}</div>
                                     </td> -->
-                                    <td>
-                                        <div class="list-price">
-                                            {{ number_format($property->price, 0, '', '.') }}  {{ $property->property_currency->code ?? '' }}
-                                        </div>
+                                    <td data-order="{{ $property->price }}">
+                                            <div class="list-price">
+                                                {{ showsaperater($property->price, $property->property_currency->code) }} {{ $property->property_currency->code ?? '' }}
+                                            </div>
                                     </td>
 
                                     <td class="vam">{{$property->visitors}}</td>
-                                    <td class="vam">{{date('d-m-Y',strtotime($property->create_date))}}</td>
-                                    <td class="vam">{{date('d-m-Y',strtotime($property->expire_date))}}</td>
+                                    <!--<td class="vam">{{date('d-m-Y',strtotime($property->create_date))}}</td>-->
+                                    <!--<td class="vam">{{date('d-m-Y',strtotime($property->expire_date))}}</td>-->
+                                    <td class="vam" data-order="{{ date('Y-m-d', strtotime($property->create_date)) }}">
+                                        {{ date('d-m-Y', strtotime($property->create_date)) }}
+                                    </td>
+                                    <td class="vam" data-order="{{ date('Y-m-d', strtotime($property->expire_date)) }}">
+                                        {{ date('d-m-Y', strtotime($property->expire_date)) }}
+                                    </td>
                                     <td class="vam">
-                                        @if($property->expire_status == 1)
-                                        <span class="bg-danger badge rounded-pill ">{{__('admin.Yes')}}</span>
-                                        @else
-                                        <span class="bg-success badge rounded-pill ">{{__('admin.No')}}</span>
-                                        @endif
+                                        <!--@if($property->expire_status == 1)-->
+                                        <!--<span class="bg-danger badge rounded-pill ">{{__('admin.Yes')}}</span>-->
+                                        <!--@else-->
+                                        <!--<span class="bg-success badge rounded-pill ">{{__('admin.No')}}</span>-->
+                                        <!--@endif-->
+                                        @php
+                                         $currentDate = now(); // Get current date
+                                        $expireDate = \Carbon\Carbon::parse($property->expire_date); // Convert expire_date to Carbon
+                                        @endphp
+        
+                                        @if($currentDate->greaterThan($expireDate)) 
+                                        {{-- Expired: Show Renew Button --}}
+                                        <a type="button" class="btn btn-light btn-sm fw-bold" onclick="renewProperty('{{ $property->id }}')" 
+                                           data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('agent.Renew') }}">
+                                           {{ __('agent.Renew') }}
+                                       </a>
+                                       @else 
+                                       {{-- Not Expired: Show "No" --}}
+                                       <span class="bg-success badge rounded-pill">{{ __('agent.No') }}</span>
+                                       @endif
                                     </td>
                                     <td class="vam">{{$property->duration}} {{__('admin.months')}}</td>
                                     <td class="vam">{{$property->property_city->title ?? ''}}</td>
@@ -91,6 +112,12 @@
                                     <td class="vam">
                                         @if($property->status == 0)
                                         <span class="bg-danger rounded-pill badge">{{__('admin.Paused')}}</span>
+                                        @php
+                                         $currentDate = now(); // Get current date
+                                        $expireDate = \Carbon\Carbon::parse($property->expire_date); // Convert expire_date to Carbon
+                                        @endphp
+                                        @elseif($currentDate->greaterThan($expireDate))
+                                         <span class="bg-danger rounded-pill badge">{{__('Expired')}}</span>
                                         @else
                                         <span class="bg-success rounded-pill badge">{{__('admin.Published')}}</span>
                                         @endif

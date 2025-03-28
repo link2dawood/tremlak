@@ -1,6 +1,27 @@
 @extends('pages.layouts.master')
 @section('pageTitle',__('user.Property Details'))
 @section('content')
+<style>
+    .list-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.8em;
+        line-height: 1.4em;
+        text-overflow: ellipsis;
+    }
+    .fixed-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limits text to exactly 2 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 48px; /* Adjust based on your font-size */
+        line-height: 24px; /* Ensures two full lines */
+        white-space: normal;
+    }
+</style>
     <section class="pt60 pb90 bgc-f7">
         <div class="container">
 
