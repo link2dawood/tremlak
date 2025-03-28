@@ -1,0 +1,41 @@
+# Ignore Google Analytics credentials
+storage/google-analytics.json
+
+# Ignore environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore node modules
+/node_modules/
+
+# Ignore IDE and editor files
+.idea/
+.vscode/
+
+# Ignore Laravel logs and caches
+storage/logs/
+storage/framework/cache/
+storage/framework/views/
+storage/framework/sessions/
+
+# Ignore Laravel public storage
+/public/storage
+
+# Ignore compiled files
+bootstrap/cache/
+
+# Ignore database files
+Homestead.json
+Homestead.yaml
+*.sqlite
+
+# Ignore debugbar cache
+storage/debugbar/
+
+# Ignore npm package-lock
+package-lock.json
+yarn.lock
